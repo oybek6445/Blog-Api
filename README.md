@@ -1,6 +1,6 @@
 # Loyihaning Nomi
 
-![Sticker](link_to_sticker_image)  <!-- O'zgarish: haqiqiy sticker rasm manzilini qo'shing -->
+Mini Blog API  <!-- O'zgarish: haqiqiy sticker rasm manzilini qo'shing -->
 
 ## Tavsif
 Loyihangiz haqida qisqacha tavsif, uning maqsadi va nima qilishi.
