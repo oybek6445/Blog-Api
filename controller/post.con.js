@@ -38,37 +38,25 @@ const getAllPosts = async (req, res) => {
     }
 };
 
-const getPostById = async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.id).populate('author', 'username image');
-        if (!post) return res.status(404).json({ message: 'Post topilmadi' });
 
-        res.json(post);
-    } catch (error) {
-        res.status(500).json({ message: 'Xatolik yuz berdi', error });
-    }
-};
 
-const updatePost = async (req, res) => {
+
+
+const deletePost = async (req, res) => {
     try {
-        const { title, content } = req.body;
         const post = await Post.findById(req.params.id);
         if (!post) return res.status(404).json({ message: 'Post topilmadi' });
 
         if (post.author.toString() !== req.userId) {
-            return res.status(403).json({ message: 'Bu postni yangilash huquqingiz yo‘q' });
+            return res.status(403).json({ message: 'Bu postni o‘chirish huquqingiz yo‘q' });
         }
 
-        post.title = title;
-        post.content = content;
-        await post.save();
-        res.json(post);
+        await post.deleteOne();
+        res.status(204).send();
     } catch (error) {
         res.status(500).json({ message: 'Xatolik yuz berdi', error });
     }
 };
-
-
 
 module.exports = {
     createPost: [upload.single('image'), createPost], 
